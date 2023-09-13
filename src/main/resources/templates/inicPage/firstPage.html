@@ -10,30 +10,40 @@
             integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
     <style>
+        #option{
+            width: 500px;
+        }
 
+        .numbers{
+            height: 50px;
+        }
+
+        #btnSortear{
+            width: 150px;
+        }
     </style>
     <title>Sorteador de Números</title>
 </head>
 
 <body>
 <div class="container mt-5">
-    <h1 class="text-center text-orange-500">SORTIEIA NUMEROS</h1>
+    <h1 class="text-center text-orange-500">SORTIEIA NUMERINS</h1>
 
     <div class="text-center text-2xl mt-3 dark:text-slate-300 md:text-4xl font-lato">Sortear <input
-            class="align-middle m-2 py-3 border-solid rounded-lg text-center p-1 w-24 md:p-3 font-size-sm  md:2-24 text-xl md:text-2xl"
-            type="number" name="quantity" id="quantity" min="1" style=""> número
+            class="numbers align-middle m-2 py-3 border-solid rounded-lg text-center p-1 w-24 md:p-3 font-size-sm  md:2-24 text-xl md:text-2xl"
+            type="number" name="quantity" id="quantity" min="1" max="10" value="1" style=""> números
         <div class="mt-2"> entre <input
-                class="align-middle py-3 border-solid rounded-lg text-center p-1 w-20 md:p-3 font-size-sm  md:2-24 text-xl md:text-2xl"
-                type="number" min="0" max="999999999" style="min-width: 70px; max-width: 155px; width: 2ch;"> e <input
+                class="numbers align-middle py-3 border-solid rounded-lg text-center p-1 w-20 md:p-3 font-size-sm  md:2-24 text-xl md:text-2xl"
+                type="number" id="minNumber" min="0" max="100" value="0" style="min-width: 70px; max-width: 155px; width: 2ch;"> e <input
                 type="number"
-                class="align-middle py-3 border-gray-200 border-solid text-orange-500 rounded-lg text-center p-1 md:p-3 font-size-sm bg-gray-50 md:2-24 text-xl md:text-2xl hover:bg-white dark:bg-gray-700 dark:border-gray-800 dark:text-white"
-                min="1" max="999999999" style="min-width: 100px; max-width: 140px; width: 4.8ch;"></div>
+                class="numbers align-middle py-3 border-gray-200 border-solid text-orange-500 rounded-lg text-center p-1 md:p-3 font-size-sm bg-gray-50 md:2-24 text-xl md:text-2xl hover:bg-white dark:bg-gray-700 dark:border-gray-800 dark:text-white"
+                id="maxNumber" min="1" max="100" value="100" style="min-width: 100px; max-width: 140px; width: 4.8ch;"></div>
     </div>
 
-    <div id="accordion" class="text-center mt-3">
+    <div id="accordion" class="text-center mt-4">
         <div class="accordion-item text-center">
             <h2 class="accordion-header" id="heading">
-                <input class="accordion-input" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1"
+                <input id="option" class="accordion-input" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1"
                        value="Opções do Sorteio">
             </h2>
             <div class="mt-10 sm:w-full md:w-4/6 lg:w-4/6 xl:w-3/6 2xl:w-2/6 mx-auto text-center">
@@ -68,12 +78,33 @@
         </div>
     </div>
     <div class="mt-3 text-center">
-        <input id="sortear" type="submit" class="btn btn-primary" value="Sortear"></input>
+        <button id="btnSortear" class="btn btn-primary" onclick="sorteando">Sortear</button>
     </div>
 </div>
 
 <script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSortear").click(function () {
+            let quantityN = $("#quantity").val();
+            let minN = $("#minNumber").val();
+            let maxN = $("#maxNumber").val();
 
+            $.ajax({
+                type: "POST",
+                url: "/paginaResultado",
+                data: { quantityNumbers: quantityN,
+                        minNumber: minN,
+                        maxNumber: maxN,
+                        },
+                success: function (data) {
+
+                },
+                error: function (data) {
+                    alert("Falha na comunicação com o servidor");
+                }
+            });
+        });
+    });
 </script>
 </body>
 
