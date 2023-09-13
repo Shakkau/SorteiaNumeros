@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -38,6 +39,8 @@ public class C_Sorteador {
                               Model model){
         int menor = Math.min(primeiroParametro, segundoParametro);
         int maior = Math.max(primeiroParametro, segundoParametro);
+        int numeroSorteado = 0;
+        int indiceSorteado;
 
         List<Integer> numerosNoIntervalo = IntStream.rangeClosed(menor, maior)
                 .boxed()
@@ -45,15 +48,16 @@ public class C_Sorteador {
 
         Random random = new Random();
 
-        // Embaralhe a lista
+        List<Integer> numerosSorteados = new ArrayList<>();
         for (int i = 0; i < quantidade; i++) {
-            int indiceSorteado = random.nextInt(numerosNoIntervalo.size());
-            int numeroSorteado = numerosNoIntervalo.remove(indiceSorteado);
+            indiceSorteado = random.nextInt(numerosNoIntervalo.size());
+            numeroSorteado = numerosNoIntervalo.remove(indiceSorteado);
+            numerosSorteados.add(numeroSorteado);
             System.out.println("Número sorteado: " + numeroSorteado);
         }
 
         model.addAttribute("numerosSorteados", numerosNoIntervalo);
 
-        return "/resultpage";
+        return "" + numerosSorteados;
     }
 }
