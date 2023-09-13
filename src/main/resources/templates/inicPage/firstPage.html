@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -74,41 +73,6 @@
 </div>
 
 <script type="text/javascript">
-    function Rolar() {
-        let qtdDado = $("#quantidades").val();
-        let qtdFaces = $("#faces").val();
-        let maiorDado = 0;
-        let somaDado = 0;
-        let resultado;
-
-        $("#tabela-dados").empty();
-
-        for (let i = 0; i < qtdDado; i++) {
-            resultado = Math.floor(Math.random() * qtdFaces) + 1;
-
-            if (maiorDado < resultado) {
-                maiorDado = resultado;
-                $(".color").removeClass();
-            }
-            somaDado += resultado;
-
-            let linha = $("<tr>");
-            if(maiorDado == resultado){
-                $('<td class="color">').text(`Dado ${i + 1}`).appendTo(linha);
-                $('<td class="color">').text(resultado).appendTo(linha);
-                linha.appendTo($("#tabela-dados"));
-                $(".color").addClass("bg-success");
-            }else{
-                $('<td>').text(`Dado ${i + 1}`).appendTo(linha);
-                $('<td>').text(resultado).appendTo(linha);
-                linha.appendTo($("#tabela-dados"));
-            }
-        }
-
-        $("#Maior-Dado").text(maiorDado);
-        $("#Soma").text(somaDado);
-        $(".row").attr("hidden", false);
-    }
 
 </script>
 </body>
