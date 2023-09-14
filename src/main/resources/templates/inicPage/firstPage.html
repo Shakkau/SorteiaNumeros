@@ -13,11 +13,9 @@
         #option{
             width: 500px;
         }
-
         .numbers{
             height: 50px;
         }
-
         #btnSortear{
             width: 150px;
         }
@@ -34,16 +32,19 @@
             type="number" name="quantity" id="quantity" min="1" max="10" value="1" style=""> números
         <div class="mt-2"> entre <input
                 class="numbers align-middle py-3 border-solid rounded-lg text-center p-1 w-20 md:p-3 font-size-sm  md:2-24 text-xl md:text-2xl"
-                type="number" id="minNumber" min="0" max="100" value="0" style="min-width: 70px; max-width: 155px; width: 2ch;"> e <input
+                type="number" id="minNumber" min="0" max="100" value="0"
+                style="min-width: 70px; max-width: 155px; width: 2ch;"> e <input
                 type="number"
                 class="numbers align-middle py-3 border-gray-200 border-solid text-orange-500 rounded-lg text-center p-1 md:p-3 font-size-sm bg-gray-50 md:2-24 text-xl md:text-2xl hover:bg-white dark:bg-gray-700 dark:border-gray-800 dark:text-white"
-                id="maxNumber" min="1" max="100" value="100" style="min-width: 100px; max-width: 140px; width: 4.8ch;"></div>
+                id="maxNumber" min="1" max="100" value="100" style="min-width: 100px; max-width: 140px; width: 4.8ch;">
+        </div>
     </div>
 
     <div id="accordion" class="text-center mt-4">
         <div class="accordion-item text-center">
             <h2 class="accordion-header" id="heading">
-                <input id="option" class="accordion-input" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1"
+                <input id="option" class="accordion-input" type="button" data-bs-toggle="collapse"
+                       data-bs-target="#collapse1"
                        value="Opções do Sorteio">
             </h2>
             <div class="mt-10 sm:w-full md:w-4/6 lg:w-4/6 xl:w-3/6 2xl:w-2/6 mx-auto text-center">
@@ -78,7 +79,7 @@
         </div>
     </div>
     <div class="mt-3 text-center">
-        <button id="btnSortear" class="btn btn-primary" onclick="sorteando">Sortear</button>
+        <button id="btnSortear" class="btn btn-primary">Sortear</button>
     </div>
 </div>
 
@@ -88,6 +89,8 @@
             let quantityN = $("#quantity").val();
             let minN = $("#minNumber").val();
             let maxN = $("#maxNumber").val();
+            let checkedBox = $("#chk-order-by")[0].checked;
+            let checkedBox2 = $("#chk-repeat-result")[0].checked;
 
             $.ajax({
                 type: "POST",
@@ -95,9 +98,12 @@
                 data: { quantityNumbers: quantityN,
                         minNumber: minN,
                         maxNumber: maxN,
+                        checkBox: checkedBox,
+                        checkBox2: checkedBox2,
                         },
                 success: function (data) {
                     window.document.write(data);
+                    history.pushState(null, null, "/paginaResultado");
                 },
                 error: function (data) {
                     alert("Falha na comunicação com o servidor");
@@ -106,6 +112,7 @@
         });
     });
 </script>
+
 </body>
 
 </html>

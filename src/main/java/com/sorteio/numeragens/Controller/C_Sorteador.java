@@ -36,10 +36,13 @@ public class C_Sorteador {
     public String drawNumbers(@RequestParam("quantityNumbers") int quantidade,
                               @RequestParam("minNumber") int min,
                               @RequestParam("maxNumber") int max,
+                              @RequestParam("checkBox") boolean checkedOrdenarN,
+                              @RequestParam("checkBox2") boolean checkedRepetirN,
                               Model model){
 
+
         model.addAttribute("qtdSorteada", quantidade);
-        model.addAttribute("numerosSorteados", S_Sorteador.geraNumeros(min, max, quantidade));
+        model.addAttribute("numerosSorteados", S_Sorteador.geraNumeros(min, max, quantidade, checkedOrdenarN, checkedRepetirN));
         model.addAttribute("numeroMinimo", min);
         model.addAttribute("numeroMaximo", max);
 

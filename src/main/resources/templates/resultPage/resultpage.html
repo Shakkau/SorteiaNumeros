@@ -9,6 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
             integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="resultpage.css">-->
     <style>
         li{
             width: 100px;
@@ -33,9 +34,6 @@
         .text{
             margin: auto
         }
-
-
-
 
         .config-text{
             font-size: 35px;
@@ -68,7 +66,7 @@
         <div id="qtd-sorteio" class="infos rounded-lg shadow-lg border-solid border border-gray-200 p-3 md:p-5
         text-center mt-2 bg-white dark:bg-gray-800 dark:text-gray-300 dark:border-gray-800">
             <p>Quantidade Sorteada:</p>
-            <div  class="pt-4">
+            <div class="pt-4">
                 <p class="config-text" th:text="${qtdSorteada}"></p>
             </div>
         </div>
@@ -76,17 +74,31 @@
              class="infos col-span-2 md:col-span-1 rounded-lg shadow-lg border-solid border border-gray-200
         p-3 mt-2 bg-white dark:bg-gray-800 dark:text-gray-300 dark:border-gray-800">
             <p>Sorteio entre:</p>
-            <div   class="pt-4">
+            <div class="pt-4">
                 <p class="config-text" th:text="${numeroMinimo + ' e ' + numeroMaximo}"></p>
             </div>
         </div>
     </div>
     <div class="mt-5 text-center">
-        <input id="returnSorteio" type="submit" class="btn btn-primary" value="Retornar ao Sorteio">
+        <button id="returnSorteio" class="btn btn-primary">Retornar ao Sorteio</button>
     </div>
 </div>
 <script type="text/javascript">
-
+    $(document).ready(function () {
+            $("#returnSorteio").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/inicio",
+                    success: function (data) {
+                        window.document.write(data);
+                        history.pushState(null, null, "/inicio");
+                    },
+                    error: function (data) {
+                        alert("Falha na comunicação com o servidor");
+                    }
+                });
+            });
+        });
 </script>
 </body>
 

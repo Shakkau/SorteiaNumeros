@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 @Service
 public class S_Sorteador {
 
-    public static List<Integer> geraNumeros(int min, int max, int quantidade){
+    public static List<Integer> geraNumeros(int min, int max, int quantidade, boolean checkedOrdenarN, boolean checkedRepetirN){
         List<Integer> numerosNoIntervalo = IntStream.rangeClosed(min, max)
                 .boxed()
                 .collect(Collectors.toList());
