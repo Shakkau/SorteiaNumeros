@@ -1,5 +1,6 @@
 package com.sorteio.numeragens.Controller;
 
+import com.sorteio.numeragens.Service.S_Sorteador;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,31 +34,12 @@ public class C_Sorteador {
 
     @PostMapping("/paginaResultado")
     public String drawNumbers(@RequestParam("quantityNumbers") int quantidade,
-                              @RequestParam("minNumber") int primeiroParametro,
-                              @RequestParam("maxNumber") int segundoParametro,
+                              @RequestParam("minNumber") int min,
+                              @RequestParam("maxNumber") int max,
                               Model model){
-        int qtdSorteada = quantidade;
-        int min = Math.min(primeiroParametro, segundoParametro);
-        int max = Math.max(primeiroParametro, segundoParametro);
-        int numeroSorteado = 0;
-        int indiceSorteado;
 
-        List<Integer> numerosNoIntervalo = IntStream.rangeClosed(min, max)
-                .boxed()
-                .collect(Collectors.toList());
-
-        Random random = new Random();
-
-        List<Integer> numerosSorteados = new ArrayList<>();
-        for (int i = 0; i < quantidade; i++) {
-            indiceSorteado = random.nextInt(numerosNoIntervalo.size());
-            numeroSorteado = numerosNoIntervalo.remove(indiceSorteado);
-            numerosSorteados.add(numeroSorteado);
-            System.out.println("Número sorteado: " + numeroSorteado);
-        }
-
-        model.addAttribute("qtdSorteada", qtdSorteada);
-        model.addAttribute("numerosSorteados", numerosSorteados);
+        model.addAttribute("qtdSorteada", quantidade);
+        model.addAttribute("numerosSorteados", S_Sorteador.geraNumeros(min, max, quantidade));
         model.addAttribute("numeroMinimo", min);
         model.addAttribute("numeroMaximo", max);
 
