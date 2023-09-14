@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +14,10 @@
             width: 100px;
             height: 100px;
             gap: 20px 5px;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
         }
 
         ul{
@@ -23,6 +27,21 @@
         .infos{
             width: 300px;
             height: 200px;
+            padding: 67px;
+        }
+
+        .text{
+            margin: auto
+        }
+
+
+
+
+        .config-text{
+            font-size: 35px;
+            line-height: 25px;
+            font-weight: bolder;
+
         }
     </style>
     <title>Sorteador de Números</title>
@@ -30,30 +49,39 @@
 
 <body>
 <div class="container text-center">
-    <h2 id="title" class="mt-5">Resultado do Sorteio:</h2>
+    <h2 id="title" class="mt-5 mb-5">Resultado do Sorteio:</h2>
     <div class="d-grid gap-3">
         <ul class="d-flex justify-content-center align-items-center flex-wrap">
-            <li class="list-group-item disabled border border-warning rounded-circle">aa</li>
-            <li class="list-group-item disabled border border-warning rounded-circle">aa</li>
+            <li class="list-group-item disabled border border-warning rounded-circle"
+                th:each="item : ${numerosSorteados}" th:text="${item}"></li>
         </ul>
     </div>
-    <h4 class="m-5">Informação do Sorteio:</h4>
+    <h4 class="mb-3 mt-4">Informação do Sorteio:</h4>
     <div class="d-flex justify-content-around">
         <div id="data-sorteio" class="infos col-span-2 md:col-span-1 mx-center rounded-lg shadow-lg border-solid border border-gray-200
-        p-2 md:p-5 text-center mt-2 bg-white dark:bg-gray-800 dark:text-gray-300 dark:border-gray-800">
-            Data do Sorteio::
+        p-3 md:p-5 text-center mt-2 bg-white dark:bg-gray-800 dark:text-gray-300 dark:border-gray-800">
+            <p>Sorteio entre:</p>
+            <div class="pt-4">
+                <p class="config-text">dezoito do dez</p>
+            </div>
         </div>
-        <div id="qtd-sorteio" class="infos rounded-lg shadow-lg border-solid border border-gray-200 p-2 md:p-5
+        <div id="qtd-sorteio" class="infos rounded-lg shadow-lg border-solid border border-gray-200 p-3 md:p-5
         text-center mt-2 bg-white dark:bg-gray-800 dark:text-gray-300 dark:border-gray-800">
-            Quantidade Sorteada:
+            <p>Quantidade Sorteada:</p>
+            <div  class="pt-4">
+                <p class="config-text" th:text="${qtdSorteada}"></p>
+            </div>
         </div>
         <div id="sorteio-entre"
-             class="infos mx-center rounded-lg shadow-lg border-solid border border-gray-200 p-2 md:p-5
-             text-center mt-2 bg-white dark:bg-gray-800 dark:text-gray-300 dark:border-gray-800">
-            Sorteio entre:
+             class="infos col-span-2 md:col-span-1 rounded-lg shadow-lg border-solid border border-gray-200
+        p-3 mt-2 bg-white dark:bg-gray-800 dark:text-gray-300 dark:border-gray-800">
+            <p>Sorteio entre:</p>
+            <div   class="pt-4  ">
+                <p class="config-text" th:text="${numeroMinimo + ' e ' + numeroMaximo}">das</p>
+            </div>
         </div>
     </div>
-    <div class="mt-3 text-center">
+    <div class="mt-5 text-center">
         <input id="returnSorteio" type="submit" class="btn btn-primary" value="Retornar ao Sorteio">
     </div>
 </div>

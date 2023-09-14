@@ -32,17 +32,17 @@ public class C_Sorteador {
     }
 
     @PostMapping("/paginaResultado")
-    @ResponseBody
     public String drawNumbers(@RequestParam("quantityNumbers") int quantidade,
                               @RequestParam("minNumber") int primeiroParametro,
                               @RequestParam("maxNumber") int segundoParametro,
                               Model model){
-        int menor = Math.min(primeiroParametro, segundoParametro);
-        int maior = Math.max(primeiroParametro, segundoParametro);
+        int qtdSorteada = quantidade;
+        int min = Math.min(primeiroParametro, segundoParametro);
+        int max = Math.max(primeiroParametro, segundoParametro);
         int numeroSorteado = 0;
         int indiceSorteado;
 
-        List<Integer> numerosNoIntervalo = IntStream.rangeClosed(menor, maior)
+        List<Integer> numerosNoIntervalo = IntStream.rangeClosed(min, max)
                 .boxed()
                 .collect(Collectors.toList());
 
@@ -56,8 +56,11 @@ public class C_Sorteador {
             System.out.println("Número sorteado: " + numeroSorteado);
         }
 
-        model.addAttribute("numerosSorteados", numerosNoIntervalo);
+        model.addAttribute("qtdSorteada", qtdSorteada);
+        model.addAttribute("numerosSorteados", numerosSorteados);
+        model.addAttribute("numeroMinimo", min);
+        model.addAttribute("numeroMaximo", max);
 
-        return "" + numerosSorteados;
+        return "resultPage/resultpage";
     }
 }
