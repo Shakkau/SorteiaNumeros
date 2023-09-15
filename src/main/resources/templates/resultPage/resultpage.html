@@ -9,40 +9,9 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
             integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!--<link rel="stylesheet" href="resultpage.css">-->
-    <!--<script src="js/resultpage.js"></script>-->
-    <style>
-        li{
-            width: 100px;
-            height: 100px;
-            gap: 20px 5px;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            text-align: center !important;
-        }
+    <link rel="stylesheet" href="css/resultpage.css">
+    <script src="js/resultpage.js"></script>
 
-        ul{
-            gap: 30px;
-        }
-
-        .infos{
-            width: 300px;
-            height: 200px;
-            padding: 67px;
-        }
-
-        .text{
-            margin: auto
-        }
-
-        .config-text{
-            font-size: 35px;
-            line-height: 25px;
-            font-weight: bolder;
-
-        }
-    </style>
     <title>Sorteador de Números</title>
 </head>
 
@@ -84,22 +53,7 @@
         <button id="returnSorteio" class="btn btn-primary">Retornar ao Sorteio</button>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function () {
-            $("#returnSorteio").click(function () {
-                $.ajax({
-                    type: "GET",
-                    url: "/",
-                    success: function () {
-                        window.location.href = "/";
-                    },
-                    error: function () {
-                        alert("Falha na comunicação com o servidor");
-                    }
-                });
-            });
-        });
-</script>
+
 </body>
 
 </html>

@@ -9,7 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
             integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!--<script src="js/firstpage.js"></script>-->
+    <script src="js/firstpage.js"></script>
     <style>
         #option{
             width: 500px;
@@ -83,37 +83,6 @@
         <button id="btnSortear" class="btn btn-primary">Sortear</button>
     </div>
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#btnSortear").click(function () {
-            let quantityN = $("#quantity").val();
-            let minN = $("#minNumber").val();
-            let maxN = $("#maxNumber").val();
-            let checkedBox = $("#chk-order-by")[0].checked;
-            let checkedBox2 = $("#chk-repeat-result")[0].checked;
-
-            $.ajax({
-                type: "POST",
-                url: "/paginaResultado",
-                data: { quantityNumbers: quantityN,
-                        minNumber: minN,
-                        maxNumber: maxN,
-                        checkBox: checkedBox,
-                        checkBox2: checkedBox2,
-                        },
-                success: function (data) {
-                    $("body").html(data);
-                    history.pushState(null, null, "/paginaResultado");
-                },
-                error: function (data) {
-                    alert("Falha na comunicação com o servidor");
-                }
-            });
-        });
-    });
-</script>
-
 </body>
 
 </html>

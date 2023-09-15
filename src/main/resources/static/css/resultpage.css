@@ -1,29 +1,29 @@
- li{
-    width: 100px;
-    height: 100px;
-    gap: 20px 5px;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-}
+li{
+            width: 100px;
+            height: 100px;
+            gap: 20px 5px;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+        }
 
-ul{
-    gap: 30px;
-}
+        ul{
+            gap: 30px;
+        }
 
-.infos{
-    width: 300px;
-    height: 200px;
-    padding: 67px;
-}
+        .infos{
+            width: 300px;
+            height: 200px;
+            padding: 67px;
+        }
 
-.text{
-    margin: auto
-}
+        .text{
+            margin: auto
+        }
 
-.config-text{
-    font-size: 35px;
-    line-height: 25px;
-    font-weight: bolder;
-}
+        .config-text{
+            font-size: 35px;
+            line-height: 25px;
+            font-weight: bolder;
+        }

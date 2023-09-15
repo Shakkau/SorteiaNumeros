@@ -3,11 +3,10 @@ $(document).ready(function () {
                 $.ajax({
                     type: "GET",
                     url: "/inicio",
-                    success: function (data) {
-                        window.document.write(data);
-                        history.pushState(null, null, "/inicio");
+                    success: function () {
+                        window.location.href = "/inicio";
                     },
-                    error: function (data) {
+                    error: function () {
                         alert("Falha na comunicação com o servidor");
                     }
                 });
