@@ -1,27 +1,34 @@
 $(document).ready(function () {
-        $("#btnSortear").click(function () {
+        $("#btnSortear").click(enviar);
+
+        function enviar () {
             let quantityN = $("#quantity").val();
             let minN = $("#minNumber").val();
             let maxN = $("#maxNumber").val();
             let checkedBox = $("#chk-order-by")[0].checked;
             let checkedBox2 = $("#chk-repeat-result")[0].checked;
 
-            $.ajax({
-                type: "POST",
-                url: "/paginaResultado",
-                data: { quantityNumbers: quantityN,
-                        minNumber: minN,
-                        maxNumber: maxN,
-                        checkBox: checkedBox,
-                        checkBox2: checkedBox2,
+            if (!checkedBox2 && quantityN > maxN) {
+                alert("Falha na comunicação com o servidor");
+            } else {
+                $.ajax({
+                       type: "POST",
+                       url: "/paginaResultado",
+                       data: { quantityNumbers: quantityN,
+                       minNumber: minN,
+                       maxNumber: maxN,
+                       checkBox: checkedBox,
+                       checkBox2: checkedBox2,
+                       },
+                        success: function (data) {
+                             $("html").html(data);
+                             $("#btnSortear").click(enviar);
+                                history.pushState(null, null, "/paginaResultado");
                         },
-                success: function (data) {
-                    $("body").html(data);
-                    history.pushState(null, null, "/paginaResultado");
-                },
-                error: function (data) {
-                    alert("Falha na comunicação com o servidor");
-                }
-            });
-        });
+                        error: function (data) {
+                                alert("Falha na comunicação com o servidor");
+                        }
+                });
+            }
+        };
     });

@@ -3,6 +3,7 @@ package com.sorteio.numeragens.Service;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -11,42 +12,31 @@ import java.util.stream.IntStream;
 @Service
 public class S_Sorteador {
 
-    public static List<Integer> geraNumeros(int min, int max, int quantidade,
+    public static int[] geraNumeros(int min, int max, int quantidade,
                                             boolean checkedOrdenarN, boolean checkedRepetirN) {
+        Random rand = new Random();
+        int resultado;
+        int[] numeros = new int[quantidade];
 
-
-        /*if (checkedRepetirN) {
-            List<Integer> numerosSorteados = new ArrayList<>();
-            Random random = new Random();
-
-            for (int i = 0; i < quantidade; i++) {
-                int numeroSorteado = min + random.nextInt(max - min + 1);
-                numerosSorteados.add(numeroSorteado);
+        /*if (!checkedRepetirN && quantidade < min){
+            return numeros;
+        } else if (!checkedRepetirN && quantidade > max) {
+            return numeros;
+        } else {*/
+        for(int i = 0; i < quantidade; i++){
+            boolean existeNoVetor = false;
+            if(checkedRepetirN) {
+                resultado = rand.nextInt(min,max+1);
+            }else{
+                do {
+                    resultado = rand.nextInt(min,max+1);
+                    int finalResultado = resultado;
+                    existeNoVetor = Arrays.stream(numeros).anyMatch(numero -> numero == finalResultado);
+                } while (existeNoVetor);
             }
-
-            return numerosSorteados;*/
-        //} else {
-            //if (quantidade > max || quantidade < min) {
-                //try {
-                    List<Integer> numerosNoIntervalo = IntStream.rangeClosed(min, max)
-                            .boxed()
-                            .collect(Collectors.toList());
-
-                    Random random = new Random();
-
-                    List<Integer> numerosSorteados = new ArrayList<>();
-                    for (int i = 0; i < quantidade; i++) {
-                        int indiceSorteado = random.nextInt(numerosNoIntervalo.size());
-                        int numeroSorteado = numerosNoIntervalo.remove(indiceSorteado);
-                        numerosSorteados.add(numeroSorteado);
-                    }
-                    return numerosSorteados;
-                //} catch (RuntimeException exception){
-                    //return null;
-                //}
-            //}
-
+            numeros[i] = resultado;
+        }
+        return numeros;
         //}
-        //return null;
     }
 }
