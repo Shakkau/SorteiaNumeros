@@ -15,7 +15,7 @@ public class S_Sorteador {
                                             boolean checkedOrdenarN, boolean checkedRepetirN) {
 
 
-        if (checkedRepetirN) {
+        /*if (checkedRepetirN) {
             List<Integer> numerosSorteados = new ArrayList<>();
             Random random = new Random();
 
@@ -24,10 +24,10 @@ public class S_Sorteador {
                 numerosSorteados.add(numeroSorteado);
             }
 
-            return numerosSorteados;
-        } else {
-            if (quantidade > max || quantidade < min) {
-                try {
+            return numerosSorteados;*/
+        //} else {
+            //if (quantidade > max || quantidade < min) {
+                //try {
                     List<Integer> numerosNoIntervalo = IntStream.rangeClosed(min, max)
                             .boxed()
                             .collect(Collectors.toList());
@@ -41,12 +41,12 @@ public class S_Sorteador {
                         numerosSorteados.add(numeroSorteado);
                     }
                     return numerosSorteados;
-                } catch (RuntimeException exception){
-                    return null;
-                }
-            }
+                //} catch (RuntimeException exception){
+                    //return null;
+                //}
+            //}
 
-        }
-        return null;
+        //}
+        //return null;
     }
 }
