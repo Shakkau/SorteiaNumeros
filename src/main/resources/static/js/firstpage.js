@@ -2,9 +2,9 @@ $(document).ready(function () {
         $("#btnSortear").click(enviar);
 
         function enviar () {
-            let quantityN = $("#quantity").val();
-            let minN = $("#minNumber").val();
-            let maxN = $("#maxNumber").val();
+            let quantityN = parseInt($("#quantity").val());
+            let minN = parseInt($("#minNumber").val());
+            let maxN = parseInt($("#maxNumber").val());
             let checkedBox = $("#chk-order-by")[0].checked;
             let checkedBox2 = $("#chk-repeat-result")[0].checked;
 
