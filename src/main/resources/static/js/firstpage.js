@@ -2,6 +2,7 @@ $(document).ready(function () {
         $("#btnSortear").click(enviar);
 
         function enviar () {
+            let dataAtual = new Date().toLocaleString('pt-BR');
             let quantityN = parseInt($("#quantity").val());
             let minN = parseInt($("#minNumber").val());
             let maxN = parseInt($("#maxNumber").val());
@@ -11,6 +12,7 @@ $(document).ready(function () {
             if (!checkedBox2 && quantityN > maxN) {
                 alert("Falha na comunicação com o servidor");
             } else {
+
                 $.ajax({
                        type: "POST",
                        url: "/paginaResultado",
@@ -19,6 +21,7 @@ $(document).ready(function () {
                        maxNumber: maxN,
                        checkBox: checkedBox,
                        checkBox2: checkedBox2,
+                       dataSorteio: dataAtual,
                        },
                         success: function (data) {
                              $("html").html(data);

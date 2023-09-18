@@ -31,6 +31,7 @@ public class C_Sorteador {
                               @RequestParam("maxNumber") int max,
                               @RequestParam("checkBox") boolean checkedOrdenarN,
                               @RequestParam("checkBox2") boolean checkedRepetirN,
+                              @RequestParam("dataSorteio") String dataDoSorteio,
                               Model model){
 
 
@@ -38,6 +39,7 @@ public class C_Sorteador {
         model.addAttribute("numerosSorteados", S_Sorteador.geraNumeros(min, max, quantidade, checkedOrdenarN, checkedRepetirN));
         model.addAttribute("numeroMinimo", min);
         model.addAttribute("numeroMaximo", max);
+        model.addAttribute("data", dataDoSorteio);
 
         return "resultPage/resultpage";
     }
