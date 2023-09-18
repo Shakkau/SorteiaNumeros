@@ -23,7 +23,7 @@ $(document).ready(function () {
                         success: function (data) {
                              $("html").html(data);
                              $("#btnSortear").click(enviar);
-                                history.pushState(null, null, "/paginaResultado");
+                             history.pushState(null, null, "/paginaResultado");
                         },
                         error: function (data) {
                                 alert("Falha na comunicação com o servidor");

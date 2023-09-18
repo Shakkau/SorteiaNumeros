@@ -18,11 +18,6 @@ public class S_Sorteador {
         int resultado;
         int[] numeros = new int[quantidade];
 
-        /*if (!checkedRepetirN && quantidade < min){
-            return numeros;
-        } else if (!checkedRepetirN && quantidade > max) {
-            return numeros;
-        } else {*/
         for(int i = 0; i < quantidade; i++){
             boolean existeNoVetor = false;
             if(checkedRepetirN) {
@@ -36,7 +31,9 @@ public class S_Sorteador {
             }
             numeros[i] = resultado;
         }
+        if (checkedOrdenarN) {
+            Arrays.sort(numeros);
+        }
         return numeros;
-        //}
     }
 }
